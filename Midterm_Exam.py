@@ -255,15 +255,10 @@ print(X.isnull().sum()) #OLS can break with missing values
 # Fit the regression model
 model = sm.OLS(y, X).fit()
 
-
 # Report the model produced.  Give an example of how it could 
 # be used and share some statistics to show if it is a valid estimation
 
-
-
-
-
-
+print(model.summary())
 
 #######################################################################
 ####################### Part 3 #######################################
