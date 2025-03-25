@@ -177,6 +177,7 @@ print(model.summary())
 ########### What is the model predicted? ##########
 ### Actually write the equation ###################
 
+######  0.001("Work/Study Hours") + 7.6487
 
 # Demonstrate how that would work if and individual
 # reported 8 work/study hours #
@@ -184,26 +185,32 @@ print(model.summary())
 ############### Find 3 statistics in the output that show
 ############### This model is NOT good/ reliable at all!
 
-
-
+######  Probability is 0.664
+######  R-squared is 0
+######  Adjusted R-squared is -0
 
 ### Here is a scatterplot showing this model ###
 ### Add a meaningful title to this plot
 sns.scatterplot(data = student,
                 x = 'Work/Study Hours',
-                y = 'CGPA',
-                title="")
+                y = 'CGPA')
+plt.title("Student CGPA Compared to Study Hours")
 plt.show()
 
 # Is there any transformation that you would recommend to improve
 # The model? If so what would it be.  If not why not?...
 
-
-
+######  No; it appears that the data is probably very clustered in such 
+######  a way that there is no strong trend, so using a transformation
+######  probably wouldn't help much. This especially seems to be the
+######  case since the log likelihood is less than -50,000.
 
 
 #### What is step down vs step up regression?  ### 
-
+######  Step down is when variables are removed from the regression one
+######  by one to get a better model; step up is when you strip it to a
+######  single variable and then add them back in one by one to get a 
+######  more predictive model that way.
 
 
 
@@ -236,17 +243,17 @@ print(model.summary())
 # Run.  
 
 # Define independent (X) and dependent (y) variables
-#y = student['CGPA']
+y = student['CGPA']
 # Use the correct column names
-#X = student['Work/Study Hours']
+X = student['Work/Study Hours']
 # Add a constant for the intercept
-#X = sm.add_constant(X)
-#X = X.astype(float)  # Forces everything to be a float
+X = sm.add_constant(X)
+X = X.astype(float)  # Forces everything to be a float
 # Final check
-#print("Final columns in X:", X.columns)
-#print(X.isnull().sum()) #OLS can break with missing values
+print("Final columns in X:", X.columns)
+print(X.isnull().sum()) #OLS can break with missing values
 # Fit the regression model
-#model = sm.OLS(y, X).fit()
+model = sm.OLS(y, X).fit()
 
 
 # Report the model produced.  Give an example of how it could 
