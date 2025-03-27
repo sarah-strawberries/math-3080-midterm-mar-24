@@ -44,6 +44,7 @@ print(list(student.columns))
 
 #######################################################################
 # List the 3 worse variable names that would be poblematic for a data scientist #
+
 ######  Worst 3 Variable Names: sm, print, and plt
 
 # And explain why #
@@ -60,7 +61,7 @@ plt.show()
 #This scatterplot matrix from pandas while a useful starting point
 # is fairly confusing.  Write a paragraph explaining the challenges
 # in interpreting this plot.
-######  It seems like the reason why this scatterplot matrix is difficult to interpret is 
+######  It seems to me like the reason why this scatterplot matrix is difficult to interpret is 
 ######  because there are so many variables and it's showing too much information at once by 
 ######  showing the relationship between every variable and every other variable. This makes
 ######  it so that the scales of each pair of variables are really hard to see, and it's also
@@ -98,7 +99,7 @@ plt.show()
 #are almost always higher than the orange
 
 ######  There is a greater number of male participants in the study (represented by
-######  the blue) than female, which would make the blue distributions higher.
+######  the blue) than female (represented by the orange), which would make the blue distributions higher.
 
 # A close inspection of the scatterplot matrix only reveals a few clues.
 # Look closely at the CGPA row.  What sticks out on that row? Also what scale is it
@@ -115,24 +116,11 @@ plt.show()
 # Directly related to your data  If you choose you can remake it and color it based on 
 # Depression instead of male/female...
 
-#######  I put in my best effort to be able to see the graph well enough to do this; I
-#######  spent over an hour between trying to get my laptop display to scale smaller 
-#######  so it could display the whole graph on my screen only to find it is unable to
-#######  scale down and can only scale up, attempting to use a tv as a monitor in hopes
-#######  it could display it on a different scale (it couldn't), trying to run the code
-#######  from the lab computers at the science building in hopes that it could display
-#######  on those (after about 20 minutes of setting up Ubuntu so I'd be able to install
-#######  Python packages, I learned that I still couldn't display the plots), and looking
-#######  for other ways around the limitations of my hardware. I ended up stuck with 
-#######  running the code from my laptop with the too-small screen, and because of how
-#######  much memory the data set takes up with the pairplot and the almost 30,000 rows
-#######  of data (about 80-90% of my laptop's available memory was being used just to gen-
-#######  erate the plot), every time I tried to pan or zoom on the graph, the window would
-#######  freeze up and stop responding; and it would take at least 30-45 seconds to re-
-#######  spond at all to any click. I couldn't see anyof the labels on the bottom of the 
-#######  graph, so I couldn't really understand the data well enough to make well-informed
-#######  observations about it. I am terribly sorry, but my failed attempts are all I've 
-#######  got. I hope you will have mercy on the points for this part.
+######  1. Only males reported work pressure values above the lowest value possible.
+######  2. By the spacing of the data points, it looks like work pressure was probably
+######     measured on a scale of 3 possible values.
+######  3. Study satisfaction appears to have been measured on a scale of discrete values
+######  4. The majority of participants appeared to be under the age of 37.
 
 
 ######################################################################
