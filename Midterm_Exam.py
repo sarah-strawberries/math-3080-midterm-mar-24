@@ -260,46 +260,65 @@ print(model.summary())
 
 ######  The model is not a very good one, hence the estimation is not valid.
 
+
 #######################################################################
 ####################### Part 3 #######################################
 ######################################################################
-######## Now lets build the model further!
+######## Now let's build the model further!
 # to make a multiple regression model the X should be passed a tuple
 # The double brackets lets you pass more than 1 independent variable 
 #X = student[['x1', 'x2']]
 # Copy relevant code from above and expand it to be a multiple regression model
 
-
-
-
-
-
-
-
+# Define independent (X) and dependent (y) variables
+y = student['CGPA']
+# Use the correct column names
+X = student[['Work/Study Hours','Age']]
+# Add a constant for the intercept
+X = sm.add_constant(X)
+X = X.astype(float)  # Forces everything to be a float
+# Final check
+print("Final columns in X:", X.columns)
+print(X.isnull().sum()) #OLS can break with missing values
+# Fit the regression model
+model = sm.OLS(y, X).fit()
 
 # Report the model produced.  Give an example of how it could 
 # be used and share some statistics to show if it is a valid estimation
-# Also mention if it is better or worse than the previuos model and how you know
+# Also mention if it is better or worse than the previous model and how you know
 
+print(model.summary())
 
+######  This model could be used to show whether CGPA is dependent on Work/Study Hours and Age.
 
+######  Statistics:
+######    R-squared = 0
+######    Adjusted R-squared = -0
+######    Log-Likelihood = -50351
+######    Probability of F-statistic = 0.629
 
-
+######  It seems this model is worse than the other, since the probability is even less than for 
+######  the other that the F-statistic would have been what it was.
 
 # Explain what colinearity is and how it can impact multiple regression.  
 # Look at the coefficients, the R-squared and other statistics the earlier full model produced
 # Do you think you have colinearity?  Why or why not?
 
+######  Colinearity is when a variable can be predicted based on more than one independent variable.
+######  I don't think this model has colinearity. It seems to not really even be very linear, so
+######  it's probably even more unlikely that it is colinear.
 
 
 # Regardless of p-values use the following code to re-run the model
 # Replace variable 1 and variable 2 with the variables you chose previously.
 # What happens when we want to add a categorical data to the dataset? 
-X = student[['Gender', 'variable_1', 'variable 2']]
+X = student[['Gender', 'Work/Study Hours', 'Age']]
 X = pd.get_dummies(X, drop_first=True) 
 # explain the get_dummies command above... What does it do? and how does it impact regression?
 
-
+######  get_dummies provides a way to model a categorical variable as a numeric by asigning 
+######  numbers to each category level. It allows you to apply a regression across a categorical
+######  variable as opposed to only using numeric ones.
 
 #### now run the following
 X = sm.add_constant(X)
@@ -313,13 +332,18 @@ model = sm.OLS(y, X).fit()
 
 # Report the model produced # 
 # Clearly explain how to use the model for a male...
+print(model.summary())
 
-
+######  Setting drop_first to False would add back in the level 'Male' of the Gender
+######  variable and allow you to use the model for a male. When drop_first is false,
+######  it removes the first level (Male) of the categorical variable, leaving just
+######  one level--namely, female.
 
 # Did gender improve the model?  Report 2 statistics to show evidence
 
-
-
+######  It seems like adding in Gender did improve the model, at least slightly.
+######  The R-squared and Adjsuted R-squared values went up to 0.001, and the 
+######  log-likelihood went to -50333, so it increased from the past trials.
 
 
 ######################################################################
