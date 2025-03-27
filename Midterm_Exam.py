@@ -165,10 +165,12 @@ print(model.summary())
 ########### What is the model predicted? ##########
 ### Actually write the equation ###################
 
-######  0.001("Work/Study Hours") + 7.6487
+######  CGPA = 0.001("Work/Study Hours") + 7.6487
 
-# Demonstrate how that would work if and individual
-# reported 8 work/study hours #
+# Demonstrate how that would work if an individual
+# reported 8 work/study hours
+
+######  CGPA = 0.001(8) + 7.6487 = 7.695
 
 ############### Find 3 statistics in the output that show
 ############### This model is NOT good/ reliable at all!
@@ -176,6 +178,7 @@ print(model.summary())
 ######  Probability is 0.664
 ######  R-squared is 0
 ######  Adjusted R-squared is -0
+
 
 ### Here is a scatterplot showing this model ###
 ### Add a meaningful title to this plot
@@ -201,7 +204,6 @@ plt.show()
 ######  more predictive model that way.
 
 
-
 # we are going to do an adaptive form of it.
 # Separate features (X) and target (y)
 # Select only numeric columns
@@ -220,8 +222,8 @@ model = sm.OLS(y, X).fit()
 print(model.summary())
 
 
-# referencing your scatterplot matrix and the model summary
-# find a numeric variable with a meaningul distribution
+# Referencing your scatterplot matrix and the model summary,
+# find a numeric variable with a meaningul distribution.
 # DO NOT use depression: Even though it was recorded as 0 and 
 # 1 it is still categorical.
 # Commented below is the code for our original model
@@ -247,6 +249,16 @@ model = sm.OLS(y, X).fit()
 # be used and share some statistics to show if it is a valid estimation
 
 print(model.summary())
+
+######  This model could be used to determine if the CGPA is dependent on Work/Study Hours.
+
+######  Statistics:
+######    R-squared = 0
+######    Adjusted R-squared = -0
+######    Log-Likelihood = -50352
+######    Probability of F-statistic = 0.664
+
+######  The model is not a very good one, hence the estimation is not valid.
 
 #######################################################################
 ####################### Part 3 #######################################
