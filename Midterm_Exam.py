@@ -355,20 +355,21 @@ print(model.summary())
 X_logit = sm.add_constant(student['Age'])
 logit_model = sm.Logit(student['Depression'], X_logit).fit()
 print(logit_model.summary())
-### Run the above model # Report the formula produced
+### Run the above model 
+## Report the formula produced
 
-
-
-
-
-
-
+######  Depression = -0.0968('Age') + 2.8637
 
 ### Explain how to use the formula used.  Specifically
-# If a student is 20 what is the probability of depression for this population
-# If a student is 30 what is the probabilty of depression for this population?
-# 
+# If a student is 20 what is the probability of depression for this population?
+######  The probability for a student aged 20 would be 
+######  -0.0968(20) + 2.8637 = 0.9277
 
+# If a student is 30 what is the probabilty of depression for this population?
+######  The probability for a student aged 30 would be 
+######  -0.0968(30) + 2.8637 = 0 
+######  (actually I got -0.0403, but a negative probability doesn't make sense to me
+######  so I figured rounding up to 0 was better)
 
 # Predictions
 student['Predicted_Depression'] = logit_model.predict(X_logit)
@@ -388,46 +389,55 @@ plt.show()
 ##### on the x-axis?  Is this a good thing or not in the context 
 # of this data?
 
-
+######  I suppose the x-axis of the graph doesn't go all the way
+######  to 1 because that would be a really young student, and 
+######  there would probably be no data points that far to the 
+######  left on the x axis if it went all the way there. I think
+######  in the context of this data, it's definitely a good thing
+######  that the x axis does not go that far.
 
 
 # Run the model
 X_logit = sm.add_constant(student[['Age', 'Academic Pressure']])
 logit_model = sm.Logit(student['Depression'], X_logit).fit()
-print(logit_model.summary())
-
 
 # Report the model produced #
-
-
+print(logit_model.summary())  # Hopefully this was what was wanted? I was a little confused on wording.
 
 
 # Add another independent variable to the model below.  If it is not 
 # significant switch it out until you find one that is
 # If you desire you can modify the code to add a categorical variable
-X_logit = sm.add_constant(student[['Age', 'Academic Pressure']])
+X_logit = sm.add_constant(student[['Age', 'Academic Pressure', 'Gender']])
+X_logit = pd.get_dummies(X_logit, drop_first=True) 
 logit_model = sm.Logit(student['Depression'], X_logit).fit()
 print(logit_model.summary())
-
 
 
 # If you were an adminster at the academic instituion 
 # that this data came from: What recommendations might 
 # you make after seeing these models?
 
+######  I would probably recommend that there be a wide variety of 
+######  free resources made available to students for recognizing, 
+######  understanding, and dealing with depression; and I would 
+######  recommend that they make a significant effort to advertise
+######  those resources so students could get help with their 
+######  depression, since most students are in the age range of
+######  20 to 30 where there is a high probability of depression.
 
 # We did not make a training/ testing dataset on this data
 # Do we have enough data to do so?  Justify it based on the size of the datamatrix
 
-
-
+######  Yes, I think we have plenty of data to make a testing dataset.
+######  We probably would only need about 1,000 rows for that, but we
+######  have nearly 30,000 rows.
 
 # What would be the advantage of doing so?
 
-
-
-
+######  A testing dataset would allow the models to be tested with a
+######  smaller portion of the data first, which could be used to 
+######  derive some models that then could be tested against the rest
+######  of the dataset to see how good at predicting they were.
 
 ################### End of Python Part of Exam ###################
-
-
